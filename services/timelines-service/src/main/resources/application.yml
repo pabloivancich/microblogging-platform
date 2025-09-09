@@ -12,8 +12,8 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      #properties:
-        #spring.json.trusted.packages: "com.microblogging.*" # allow deserialization of your domain classes
+      properties:
+        spring.json.trusted.packages: "com.microblogging.*" # allow deserialization of your domain classes
         #spring.json.use.type.headers: true
 
 server:
@@ -21,5 +21,4 @@ server:
 
 services:
   users:
-    #base-url: http://{USERS_HOST}:{USERS_PORT} # This should match docker-compose or k8s service name
-    base-url: http://users-service:8080 # This should match docker-compose or k8s service name
+    base-url: http://{USERS_HOST}:{USERS_PORT} # This should match docker-compose or k8s service name
