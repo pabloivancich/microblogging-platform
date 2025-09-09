@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataCassandraTest
 @Testcontainers
-@Import({PostRepositoryImpl.class, CassandraInitializer.class, CassandraTestcontainersConfiguration.class})
+@Import({PostRepositoryImpl.class, CassandraTestcontainersConfiguration.class})
 public class PostRepositoryImplTest {
 
     @Autowired
