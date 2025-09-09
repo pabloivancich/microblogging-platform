@@ -29,9 +29,7 @@ To stop infrastructure:
 docker compose -f docker-compose.infra.yml down
 ```
 
-### Start Timelines Service locally using IntelliJ IDEA
-
-After cloning the repo, open it in IntelliJ IDEA and you will see all run configuration available in the **Run/Debug Configurations** dropdown. \
+### Build Timelines Service locally
 
 To build the service, go to microblogging-platform\services\timelines-service\ and run:
 ```
@@ -39,7 +37,6 @@ mvnw clean package
 ```
 This will build the service and run unit tests.
 
-Then, you can run **timelines-service** to execute this service.
 
 ### Start Timelines Service using Docker compose
 
