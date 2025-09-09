@@ -15,7 +15,7 @@ Handles user lifecycle and social graph.
 Responsibilities:
 - Create, retrieve, and delete users.
 - Follow / unfollow users.
-- Emit user.followed and user.unfollowed events for downstream consumers
+- Emit user.follow and user.unfollow events for downstream consumers
 
 
 ### Posts Service
@@ -32,7 +32,7 @@ Handles timeline assembly and read-optimized view for users.
 
 Responsibilities:
 - Consume post.created events → fan-out (on write) posts to followers’ timelines
-- Consume user.followed / user.unfollowed events → adjust timeline fan-out targets
+- Consume user.follow / user.unfollow events → adjust timeline fan-out targets
 - Serve timeline for a given user, optimized for fast reads
 
 
@@ -54,7 +54,7 @@ All services rely on the following infrastructure components
 
 posts-service publishes post.created events when a user posts something.
 
-users-service publishes user.followed / user.unfollowed events when a user follows/unfollows someone.
+users-service publishes user.follow / user.unfollow events when a user follows/unfollows someone.
 
 timeline-service consumes these events to update timelines.
 
@@ -89,8 +89,8 @@ A monorepo project is used because simplicity for this MVP.
 ## Next Steps
 
 ### Backfills
-After a user followed event. Old user posts can be added to timeline.
-After a user unfollowed event. Old user posts can be removed from timeline.
+After a user follow event. Old user posts can be added to timeline.
+After a user unfollow event. Old user posts can be removed from timeline.
 
 ### Kubernetes
 Use Kubernetes as Orchestrator instead of Docker Compose, which is only recommended for development purposes.
