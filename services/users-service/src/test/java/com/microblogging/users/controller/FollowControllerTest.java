@@ -41,7 +41,7 @@ public class FollowControllerTest {
         doNothing().when(followService).follow(anyLong(), anyLong());
 
         ResultActions result = mockMvc.perform(
-                post("/follows/{followerId}/follow/{followeeId}", 1L, 2L)
+                post("/users/{followerId}/follow/{followeeId}", 1L, 2L)
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -55,7 +55,7 @@ public class FollowControllerTest {
         doThrow(ValidationException.class).when(followService).follow(anyLong(), anyLong());
 
         ResultActions result = mockMvc.perform(
-                post("/follows/{followerId}/follow/{followeeId}", 1L, 2L)
+                post("/users/{followerId}/follow/{followeeId}", 1L, 2L)
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -69,7 +69,7 @@ public class FollowControllerTest {
         doNothing().when(followService).unfollow(anyLong(), anyLong());
 
         ResultActions result = mockMvc.perform(
-                delete("/follows/{followerId}/follow/{followeeId}", 1L, 2L)
+                delete("/users/{followerId}/follow/{followeeId}", 1L, 2L)
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
@@ -81,7 +81,7 @@ public class FollowControllerTest {
         User user = new User(2L, "follower", Instant.now());
         when(followService.getFollowers(anyLong())).thenReturn(List.of(user));
 
-        ResultActions result = mockMvc.perform(get("/follows/{userId}/followers", 1L)
+        ResultActions result = mockMvc.perform(get("/users/{userId}/followers", 1L)
                 .contentType(MediaType.APPLICATION_JSON));
 
         result.andExpect(status().isOk());
@@ -92,7 +92,7 @@ public class FollowControllerTest {
         User user = new User(2L, "follower", Instant.now());
         when(followService.getFollowees(anyLong())).thenReturn(List.of(user));
 
-        ResultActions result = mockMvc.perform(get("/follows/{userId}/followees", 1L)
+        ResultActions result = mockMvc.perform(get("/users/{userId}/followees", 1L)
                 .contentType(MediaType.APPLICATION_JSON));
 
         result.andExpect(status().isOk());
