@@ -44,6 +44,9 @@ All services rely on the following infrastructure components
 - Cassandra - scalable, write-optimized store for posts
 - Kafka - events streaming backbone for communication between services
 
+## Platform Diagram
+
+![Microblogging Platform Diagram](docs/microblogging-platform.png)
 
 ## Communication Overview
 
@@ -80,6 +83,8 @@ Each service owns its data store, enabling independent scaling and schema evolut
 ### Local Development:
 A single docker-compose.infra.yml spins up all infrastructure components, while services run independently.
 
+### Monorepo
+A monorepo project is used because simplicity for this MVP.
 
 ## Next Steps
 
