@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: posts-service
+  kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+cassandra:
+  keyspace-name: ${CASSANDRA_KEYSPACE_NAME}
+  contact-points: ${CASSANDRA_CONTACT_POINTS}
+  port: ${CASSANDRA_PORT}
+  local-datacenter: datacenter1
+  schema-action: none # handled manually
+
+server:
+  port: 8082

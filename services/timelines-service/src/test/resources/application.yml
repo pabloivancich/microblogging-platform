@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: timelines-service
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: timelines-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.microblogging.timelines.*" # allow deserialization of your domain classes
+        spring.json.use.type.headers: true
+
+services:
+  users:
+    base-url: http://localhost:8080 # This should match docker-compose or k8s service name

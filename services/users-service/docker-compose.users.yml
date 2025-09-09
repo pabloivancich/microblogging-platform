@@ -1,0 +1,19 @@
+networks:
+  microblog-net:
+    external: true # Reuse the shared network
+
+services:
+  users-service:
+    build: .
+    container_name: users-service
+    ports:
+      - "8081:8080"
+    networks:
+      - microblog-net
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: usersdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092

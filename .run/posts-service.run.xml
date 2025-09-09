@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="posts-service" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="21" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="CASSANDRA_CONTACT_POINTS" value="localhost" />
+      <env name="CASSANDRA_KEYSPACE_NAME" value="posts_keyspace" />
+      <env name="CASSANDRA_PORT" value="9042" />
+      <env name="KAFKA_BOOTSTRAP_SERVERS" value="localhost:9092" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.microblogging.posts.PostsServiceApplication" />
+    <module name="posts-service" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/services/posts-service" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

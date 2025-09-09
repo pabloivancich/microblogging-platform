@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="3-create-follows-table" author="pabloivancich">
+        <createTable tableName="follows">
+            <column name="follower_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followed_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4-add-follows-constraints" author="pabloivancich">
+        <addPrimaryKey
+                tableName="follows"
+                columnNames="follower_id, followee_id"
+                constraintName="pk_follows"/>
+
+        <addForeignKeyConstraint
+                baseTableName="follows" baseColumnNames="follower_id"
+                referencedTableName="users" referencedColumnNames="id"
+                onDelete="CASCADE"
+                constraintName="fk_follows_follower"/>
+
+        <addForeignKeyConstraint
+                baseTableName="follows" baseColumnNames="followee_id"
+                referencedTableName="users" referencedColumnNames="id"
+                onDelete="CASCADE"
+                constraintName="fk_follows_followee"/>
+    </changeSet>
+
+    <changeSet id="5-add-follows-indexes" author="pabloivancich">
+        <createIndex indexName="idx_follows_follower" tableName="follows">
+            <column name="follower_id"/>
+        </createIndex>
+        <createIndex indexName="idx_follows_followee" tableName="follows">
+            <column name="followee_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
