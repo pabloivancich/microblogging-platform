@@ -95,7 +95,7 @@
             <version>1.21.3</version>
             <scope>test</scope>
         </dependency>
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

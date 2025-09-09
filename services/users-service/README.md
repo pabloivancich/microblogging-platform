@@ -21,6 +21,12 @@ Go to microblogging-platform\infra\microblogging-platform-local\ folder and run:
 docker compose -f docker-compose.infra.yml up -d
 ```
 
+To stop infrastructure:
+
+```
+docker compose -f docker-compose.infra.yml down
+```
+
 ### Start Users Service locally using IntelliJ IDEA
 
 After cloning the repo, open it in IntelliJ IDEA and you will see all run configuration available in the **Run/Debug Configurations** dropdown. \
