@@ -31,6 +31,18 @@ public class CassandraConfig {
      */
     @Bean
     public CqlSession cqlSession() {
+        try (CqlSession session = CqlSession.builder()
+                .withKeyspace("system") // connect to system keyspace first
+                .withLocalDatacenter(cassandraLocalDatacenter)
+                .addContactPoint(new InetSocketAddress(cassandraContactPoints, Integer.parseInt(cassandraPort)))
+                .build()) {
+
+            // Create keyspace if missing
+            session.execute("CREATE KEYSPACE IF NOT EXISTS " + cassandraKeyspaceName +
+                    " WITH replication = {'class':'SimpleStrategy', 'replication_factor':1}");
+        }
+
+        // Now connect to your app keyspace
         return CqlSession.builder()
                 .addContactPoint(new InetSocketAddress(cassandraContactPoints, Integer.parseInt(cassandraPort)))
                 .withLocalDatacenter(cassandraLocalDatacenter)
