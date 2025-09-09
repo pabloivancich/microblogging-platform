@@ -49,13 +49,6 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-        <!-- Microblogging commons
-        <dependency>
-            <groupId>com.microblogging</groupId>
-            <artifactId>commons</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        -->
         <!-- Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
