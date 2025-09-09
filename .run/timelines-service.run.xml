@@ -2,6 +2,13 @@
   <configuration default="false" name="timelines-service" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="21" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="KAFKA_BOOTSTRAP_SERVERS" value="localhost:9092" />
+      <env name="REDIS_HOST" value="localhost" />
+      <env name="REDIS_PORT" value="6379" />
+      <env name="USERS_SERVICE_HOST" value="localhost" />
+      <env name="USERS_SERVICE_PORT" value="8081" />
+    </envs>
     <option name="MAIN_CLASS_NAME" value="com.microblogging.timelines.TimelineServiceApplication" />
     <module name="timelines-service" />
     <method v="2">
