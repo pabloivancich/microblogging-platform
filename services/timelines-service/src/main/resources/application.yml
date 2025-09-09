@@ -12,9 +12,9 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "com.microblogging.timelines.*" # allow deserialization of your domain classes
-        spring.json.use.type.headers: true
+      #properties:
+        #spring.json.trusted.packages: "com.microblogging.*" # allow deserialization of your domain classes
+        #spring.json.use.type.headers: true
 
 server:
   port: 8083

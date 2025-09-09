@@ -7,7 +7,7 @@ services:
     build: .
     container_name: timelines-service
     ports:
-      - "8083:8080"
+      - "8083:8083"
     networks:
       - microblog-net
     environment:
@@ -15,4 +15,4 @@ services:
       REDIS_PORT: 6379
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       USERS_SERVICE_HOST: users-service
-      USERS_SERVICE_PORT: 8080
+      USERS_SERVICE_PORT: 8081
