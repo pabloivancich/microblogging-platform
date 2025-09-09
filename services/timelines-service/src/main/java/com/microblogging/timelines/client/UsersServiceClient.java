@@ -32,6 +32,7 @@ public class UsersServiceClient {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/users/{id}/followers").build(userId))
                 .accept(MediaType.APPLICATION_JSON)
+                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
                 .bodyToFlux(User.class) // Expecting a JSON array of Users
                 .collectList()
