@@ -1,11 +1,15 @@
 package com.microblogging.timelines.kafka;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microblogging.timelines.client.UsersServiceClient;
+import com.microblogging.timelines.config.JacksonConfig;
 import com.microblogging.timelines.kafka.event.PostCreatedEvent;
 import com.microblogging.timelines.model.Post;
 import com.microblogging.timelines.model.User;
 import com.microblogging.timelines.service.TimelineService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -33,11 +37,17 @@ public class PostEventConsumerTest {
     @Mock
     private UsersServiceClient usersService;
 
-    @InjectMocks
+    private final ObjectMapper objectMapper = JacksonConfig.buildObjectMapper();
+
     private PostEventConsumer postEventConsumer;
 
+    @BeforeEach
+    public void init() {
+        postEventConsumer = new PostEventConsumer(timelineService, usersService, objectMapper);
+    }
+
     @Test
-    public void testHandlePostCreated_Ok() {
+    public void testHandlePostCreated_Ok() throws JsonProcessingException {
         Long userId = 1L;
         UUID postId = UUID.randomUUID();
         String postContent = "Hello world";
@@ -52,7 +62,8 @@ public class PostEventConsumerTest {
         when(usersService.getFollowers(userId)).thenReturn(followers);
         doNothing().when(timelineService).addToTimeline(anyLong(), any(Post.class));
 
-        postEventConsumer.handlePostCreated(event);
+        String eventStr = objectMapper.writeValueAsString(event);
+        postEventConsumer.handlePostCreated(eventStr);
 
         verify(usersService, times(1)).getFollowers(userId);
 

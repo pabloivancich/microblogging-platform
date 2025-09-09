@@ -11,14 +11,14 @@ spring:
       group-id: timelines-service
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
-        spring.json.trusted.packages: "com.microblogging.*" # allow deserialization of your domain classes
-        #spring.json.use.type.headers: true
+        spring.json.trusted.packages: "*" # allow deserialization of your domain classes
+        spring.json.use.type.headers: false
 
 server:
   port: 8083
 
 services:
   users:
-    base-url: http://{USERS_HOST}:{USERS_PORT} # This should match docker-compose or k8s service name
+    base-url: http://${USERS_SERVICE_HOST}:${USERS_SERVICE_PORT} # This should match docker-compose or k8s service name
