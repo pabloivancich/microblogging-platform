@@ -52,3 +52,7 @@ To stop service:
 ```
 docker compose -f docker-compose.posts.yml down
 ```
+
+## Testing the Service
+
+When all services are running, you can do REST calls using the postman collection in microblogging-platform\postman folder.
